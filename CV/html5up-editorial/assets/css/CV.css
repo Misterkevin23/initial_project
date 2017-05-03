@@ -1,0 +1,139 @@
+h1
+{
+	color:black;
+	font-size: 40px;
+	font-family: Impact, "Courier New", "Comic Sans MS", Verdana, serif;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 3px 7px 6px red;
+	opacity: 1;
+}
+
+em
+{
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'school';
+    src: url('learning_curve_regular_ot_ps.otf') format('otf'),
+         url('learning_curve_regular_ot_tt.ttf') format('truetype');
+}
+
+
+#title
+{
+	float: left;
+	width: 75%;
+	margin-top: 10px
+}
+
+#profil
+{
+	float:right;
+	width:25%;
+	margin-top: 20px
+}
+
+#contener
+{
+	clear: both;
+	border-top: 2px solid green;
+
+}
+
+#box1{
+
+	float: left;
+	width: 50%;
+
+
+}
+
+#box2{
+
+	float: left;
+	width: 50%;
+}
+
+#box3{
+
+	float: left;
+	width: 50%;
+
+}
+
+
+.texte_dessous
+{
+	clear:both;
+}
+
+.italic
+{
+	font-style: italic;
+}
+
+.date
+{
+	text-decoration: underline;
+	color:black;
+}
+
+.intro
+{
+	color:blue;
+	font-size: 1.3em;
+	font-style: italic;
+	text-align: center;
+	font-family: "Courier New", Impact, "Comic Sans MS", Verdana, serif;
+}
+
+.article
+{
+	color:red;
+	font-size: 2em;
+	text-align: center;
+	font-family: school;
+	text-decoration:underline;
+}
+
+.compétence
+{
+	text-align: center;
+}
+	
+
+h2
+{
+	color:green;
+	text-align:center;
+	font-size: 2em;
+	background-color: red;
+	border: 3px yellow solid;
+	border-radius: 30px;
+	box-shadow: 3px 7px 6px yellow;
+}
+
+p
+{
+	font-size: 1,5em;
+	color:black;
+	text-align: justify;
+	font-family: "Comic Sans MS", Verdana, serif;
+	margin-left: 20px;
+}
+
+li
+{
+	font-size:1,3em;
+	color:brown;
+	font-family: Impact, "Comic Sans MS", Verdana, serif;
+	margin-left: 40px;
+}
+
+body
+{
+	 background: url("scientifique-avec-une-loupe.jpg") fixed no-repeat right;
+}
