@@ -1,0 +1,87 @@
+<doctype HTML>
+<html>
+<head>
+	<title>test javascript</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
+	<script type="text/javascript" src="../js/confirm.js"> </script>
+
+</head>
+
+<body>
+	<h1>Get in touch</h1>
+	<form method="post" name="formul" onSubmit="return verif();" action="#">
+		<fieldset>
+		<legend>Information géneral</legend>
+			<div>
+				<label for="mlle" for="M">Titre: </label>
+				<input type="radio" id="mlle" name="Sex" value="">Mlle
+				<input type="radio" id="M" name="Sex" value="">M.
+			</div>
+			
+			<div>
+				<label for="fistname"><span class="label_text"> Prénom: <span></label>
+				<input type="text" id="fistname" name="prenom"><br>
+			</div>	
+
+			<div>
+				<label for="name" ><span class="label_text">Nom: </span></label>
+				<input type="text" id="name" name="nom"><br>
+			</div>
+
+		</fieldset>
+
+		<fieldset>
+		<legend>Coordonnée</legend>
+			<div>
+				<label for="mail" ><span class="label_text">Email: </span></label><br>
+				<input type="text" id="mail" name="email"><br> 
+			</div>
+
+			<div>
+				<label for="phone" ><span class="label_text">Telephone: </span></label><br>
+				<input type="text" id="phone" name="telephone"><br>
+			</div>
+
+		</fieldset>
+
+		<fieldset>
+		<legend>Adresse postal</legend>
+			<div>
+				<label for="numeros" ><span class="label_text">N°, voies: </span></label><br>
+				<input type="text" id="numeros" name="numeros"><br>
+				<label for="rue" ><span class="label_text">Rue, Avenue: </span></label><br>
+				<input type="text" id="rue" name="rue"><br> 
+			</div>
+
+			<div>
+				<label for="postcode" ><span class="label_text">Code postal: </span></label><br>
+				<input type="text" id="postcode" name="code_postal"><br>
+				<label for="ville" ><span class="label_text">Ville: </span></label><br>
+				<input type="text" id="ville" name="ville"><br>
+			</div>
+
+			<div>
+				<label for="pays"><span class="form_info"> Pays :</span> </label>
+				<select id="pays" size="1" required>
+						<option value="">	</option>
+						<option value="France">France	</option>
+						<option value="Allemagne">Allemagne	</option>
+						<option value="belgique">belgique	</option>
+						<option value="Espagne">Espagne	</option>
+				</select>
+			</div>	
+
+		</fieldset>
+
+		<div>
+			<label for="message" ><span class="label_text"> Message: </span></label><br>
+			<textarea id="message"></textarea><br>
+		</div>
+	
+		<input type="submit" name="Valider" value="Envoyer">
+	</form>
+
+
+
+</body>
