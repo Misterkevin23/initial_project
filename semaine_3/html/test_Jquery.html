@@ -1,0 +1,39 @@
+<doctype HTML>
+<html>
+<head>
+<script type="text/javascript" src=../jquery/jquery-3.2.1.min.js></script>
+<script type="text/javascript">
+	
+	$(".special").ready(function() {
+		$(".special").click(function(){
+			$(".cacher").hide();
+
+		});
+		$(".special2").click(function(){
+			$(".cacher").show();
+		});	
+	})
+</script>
+
+</head>
+
+<body>
+
+	<h2>heading de la page</h2>
+	<div class= "cacher">
+		<p>Mon paragraphe</p>
+		<p>Un autre paragraphe</p>
+	</div>
+		<button>Click moi</button>
+	
+<fieldset>
+		<legend>Information géneral</legend>
+			<div>
+				<label for="mlle" for="M">Titre: </label>
+				<input type="radio" id="mlle" name="Sex" value="" class="special">Mlle
+				<input type="radio" id="M" name="Sex" value="" class="special2" >M.
+			</div>
+
+</body>
+
+</html>
