@@ -1,18 +1,61 @@
 <doctype HTML>
 <html>
 <head>
+<style> .mauvais{ color: red }  .mauvais_message{background: red} </style>
 <script type="text/javascript" src=../jquery/jquery-3.2.1.min.js></script>
 <script type="text/javascript">
 	
-	$(".special").ready(function() {
+	$(document).ready(function() {
 		$(".special").click(function(){
 			$(".cacher").hide();
 
 		});
 		$(".special2").click(function(){
 			$(".cacher").show();
+		});
+
+		$(".special,.special2").click(function(){
+		$("p").toggle("slow");
 		});	
+
+		$("#image").fadeOut(5000).delay(300).fadeIn(5000);
+
+		$("#checkAll").click(function(){
+			// ib cherche les checkbox à l'intérieur de l'id 'magazine'
+		var magazines = $("#magazine").find(":checkbox");
+			if(this.checked){
+				magazines.prop("checked",true); 
+			}
+			else{
+				magazines.prop("checked",false);
+			}	
+		})
+
+		$("#message").keyup(function(){
+			var nombreCaractere = $(this).val().length;
+			var nombreMots = jQuery.trim($(this).val()).split(" ").length;
+
+			if($(this).val() === ""){
+				nombreMots=0;
+			}
+
+			var msg = "" + nombreMots + " mot(s) | " + nombreCaractere	+ "Caractere(s)/200"
+			$("#compteur").text(msg);
+
+			if(nombreCaractere > 200){
+				$("#compteur").addClass("mauvais");
+				$("#message").addClass("mauvais_message")
+			}
+			else{
+				$("#compteur").removeClass("mauvais");
+				$("#message").removeClass("mauvais_message")
+			}
+		})
+		
 	})
+
+	// trim retire les espace avant et apres le mot -> si plus d'espace entre les mot = n'en garde que 1
+	// split coupe une chaine de caracteur en fonction d'un sélécteur
 </script>
 
 </head>
@@ -24,15 +67,29 @@
 		<p>Mon paragraphe</p>
 		<p>Un autre paragraphe</p>
 	</div>
-		<button>Click moi</button>
-	
+		<button class="special">Click moi</button>
+		<button class="special2">Affiche moi</button>
+		<button class="toggle">Cacher/afficher</button>
+
+		<div>
+			<label for="mlle" for="M">Titre: </label>
+			<input type="radio" id="mlle" name="Sex" value="" class="special">Mlle
+			<input type="radio" id="M" name="Sex" value="" class="special2" >M.
+		</div>
 <fieldset>
 		<legend>Information géneral</legend>
-			<div>
-				<label for="mlle" for="M">Titre: </label>
-				<input type="radio" id="mlle" name="Sex" value="" class="special">Mlle
-				<input type="radio" id="M" name="Sex" value="" class="special2" >M.
-			</div>
+			<input id="checkAll" type="checkbox" />Cocher/ décocher
+			<ul id="magazine">
+				<li><input type="checkbox" /> Mag 1 </li>
+				<li><input type="checkbox" /> Mag 2 </li> 
+				<li><input type="checkbox" /> Mag 3 </li>
+				<li><input type="checkbox" /> Mag 4 </li>
+			</ul>	
+
+			<textarea id="message"> entrer votre valeur ici </textarea>
+			<p id="compteur">0 mot | 0 Caractere ()</p>
+			<img src="../../image/nissan-skyline-gt-r-manji-garage-r34.jpg" id="image">
+</fieldset>
 
 </body>
 

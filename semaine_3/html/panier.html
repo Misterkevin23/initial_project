@@ -16,14 +16,14 @@
 			Quantité: <input type="text" name="quant" class="quantite watch" value=1>
 			Prix: <input type="text" name="price" class="price watch" value=25>
 			<strong>Total</strong>
-			<input type="text" name="totalAPayer" class="totalAPayer"> <br>	
+			<input type="text" name="totalAPayer" class="totalAPayer" value=""> <br>	
 		</li>
 		<li class="list-group-item list-group-item-info">
 			<strong>Billet Train: </strong> <hr>
 			Quantité : <input type="text" name="quant" class="quantite watch" value=2>
 			Prix : <input type="text" name="price" class="price watch" value=50> 
 			<strong>Total</strong>
-			<input type="text" name="totalAPayer" class="totalAPayer"> <br>	
+			<input type="text" name="totalAPayer" class="totalAPayer" value=""> <br>	
 		</li>
 		<div id="totalPanier">
 			<strong>Net à payer: <input type="text" name="totalPanier" class="totalPanier"></strong>
@@ -35,7 +35,7 @@
 <script type="text/javascript" src="../js/panier.js"> </script>	
 <script> 
 aPayerParArticle();
-totalAPayer();
+TtotalAPayer();
 document.querySelectorAll(".facturations .watch").forEach(function(field){
 	field.onkeyup = function(){
 		aPayerParArticle();
