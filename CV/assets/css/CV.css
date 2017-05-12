@@ -3,13 +3,13 @@
 	@font-face
 	{
 	    font-family: 'school';
-	    src: url('learning_curve_regular_ot_ps.otf') format('otf'),
-	         url('learning_curve_regular_ot_tt.ttf') format('truetype');
+	    src: url('assets/font/learning_curve_regular_ot_ps.otf') format('otf'),
+	         url('assets/font/learning_curve_regular_ot_tt.ttf') format('truetype');
 	}
 
 	body
 	{
-		 background: url("scientifique-avec-une-loupe.jpg") fixed no-repeat right;
+		 background: url("image/scientifique-avec-une-loupe.jpg") fixed no-repeat right;
 		 display:flex;
 		 flex-wrap: wrap;
 	}
