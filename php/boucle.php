@@ -1,4 +1,6 @@
 <?php
+include 'includes/header.php';
+include 'includes/menu.php';
 //*** boucles ***
 //FOR
 
@@ -6,7 +8,7 @@ for($i=0; $i<10; $i++){
 	echo '<p>' .$i. '</p>';
 }
 
-//While
+//WHILE
 
 $i = 0; // variable servant
 
@@ -50,5 +52,7 @@ foreach ($animaux as $animal) {
 //Exo
 //Afficher deux autre photo
 //afficher une bordure coloré autour des immge
+
+include 'includes/footer.php';
 
 ?>
