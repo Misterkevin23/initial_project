@@ -60,11 +60,20 @@ $query->execute(); //execute() renvoie vrai si réussite
 //La méthode fetch renvoi sous forme d'un tableau php la prochaine ligne (rows) sql non traité
 //les lignes sql déjà traitées (fetched) ne sont plus dans l'objet $query
 //fetch() renvoie false quand toutes les lignes sql ont été traitées
-
 while($joueur = $query->fetch()){
 //à chaque itération la variable $joueur reçoit le résultat de fetch() c'est-à-dire un tableau associatif contenant les données du joueur	
+	$numeros=$joueur["numeros_maillot"];
 	echo '<tr>';
-	echo'<td>' . $joueur["prenom"] . ' </td><td>' . $joueur["nom"] . '</td>';
+	echo'<td>' . $joueur["prenom"] . ' ' . '  </td><td>'.' ' . $joueur["nom"] .'</td>';
+	$condition = $numeros > 0 && $numeros < 1000;
+	if ($condition) {
+		echo'<td> ' . ' (' . $numeros . ')</td>';
+	}
+	else{
+		echo'<td></td>';
+	}
+	echo '<td><a class="btn-primary btn-xs" href="updatePlayer.php?id='.$joueur["id"].'"> Modifier</a></td>';
+	echo '<td><a class="btn btn-danger btn-xs" href="deletePlayer.php?id='.$joueur["id"].'"> Supprimer</a></td>';
 	echo '</tr>';
 }
 

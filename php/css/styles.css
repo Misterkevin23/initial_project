@@ -18,8 +18,17 @@ form{
 	margin: 23px;
 	border-radius:20px;
 	padding: 7px;
+	text-align: center;
 }
 
 table{
-	border: 3px blue dotted;
+	border: 3px blue solid;
+	margin-left: 23px;
+	border-collapse: collapse;
+	border-left-width:7px;
+}
+
+td{
+	border: 20px;
+	padding: 7px;
 }

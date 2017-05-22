@@ -4,7 +4,9 @@
 			['href'=>'variables.php', 'label' => 'Variables'],
 			['href'=>'boucle.php', 'label' => 'Boucle'],
 			['href'=>'fonction.php', 'label' => 'Fonction'],
-			['href'=>'get.php?country=italie&sport=football', 'label' => 'GET']
+			['href'=>'get.php?country=italie&sport=football', 'label' => 'GET'],
+			['href'=>'joueurs.php', 'label' => 'joueurs'],
+			['href'=>'addPlayer.php', 'label' => 'Ajouter un joueur']
 		];
 ?>
 
