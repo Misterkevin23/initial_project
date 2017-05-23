@@ -2,6 +2,7 @@
 include 'includes/util.inc.php';
 include 'includes/header.php';
 include 'includes/menu.php';
+include 'includes/equipe.inc.php';
 
 if(isset($_GET['ageLimit'])){
 	$ageLimit= $_GET['ageLimit'];
@@ -9,32 +10,20 @@ if(isset($_GET['ageLimit'])){
 		$ageLimit = 35;
 	}
 }	
-//bibliothèque utilisée pour dialoguer à MySQL: PDO
-//-->connexion à la base de données<---
+
 $db = new PDO('mysql:host=localhost;dbname=formation-poec', 'root', '');
 
-//***prépartation de la requête**** (lecture)
-//prépartation de la requête avec un filtre (plusieurs filtre possible avec AND)
 if (isset($ageLimit)){
 	$query = $db->prepare('SELECT * FROM joueur WHERE age < '.$ageLimit);
 }
 else{
 	$query = $db->prepare('SELECT * FROM joueur');
-//Le parametres WHERE est retiré
+
 }
-//***exécution****
-$query->execute(); //execute() renvoie vrai si réussite
 
-//***récupération des données****
+$query->execute(); 
 
-/*$data = $query ->fetch(); */
-//extrait le premier element de l'objet
-				//transforme les résultat du raw en une structure php =>tableau
-/*$joueurs= $query ->fetchAll();*/ 
-//extrait tous les elements du tableau
 
-/*var_dump($datas);*/ 
-//la function var_dump affiche la description détaillé (type et valeur de la variable fournie en entrée)
 ?>
 
 <h1>Joueurs</h1>
@@ -52,31 +41,41 @@ $query->execute(); //execute() renvoie vrai si réussite
 	</form>	
 </div>
 <table>
-<?php
-/*foreach($joueurs as $joueur){
-	echo'<p>' . $joueur["prenom"] . ' ' . $joueur["nom"] . '</p>';
-}*/
 
-//La méthode fetch renvoi sous forme d'un tableau php la prochaine ligne (rows) sql non traité
-//les lignes sql déjà traitées (fetched) ne sont plus dans l'objet $query
-//fetch() renvoie false quand toutes les lignes sql ont été traitées
+<?php
+$output='';
+$i=0;
 while($joueur = $query->fetch()){
-//à chaque itération la variable $joueur reçoit le résultat de fetch() c'est-à-dire un tableau associatif contenant les données du joueur	
+	$i++;
+
 	$numeros=$joueur["numeros_maillot"];
-	echo '<tr>';
-	echo'<td>' . $joueur["prenom"] . ' ' . '  </td><td>'.' ' . $joueur["nom"] .'</td>';
+	$output.= '<tr>';
+	$output.='<td>' . $joueur["prenom"] . ' ' . '  </td><td>'.' ' . $joueur["nom"] .'</td>';
 	$condition = $numeros > 0 && $numeros < 1000;
 	if ($condition) {
-		echo'<td> ' . ' (' . $numeros . ')</td>';
+		$output.='<td> ' . ' (' . $numeros . ')</td>';
 	}
 	else{
-		echo'<td></td>';
+		$output.='<td></td>';
 	}
-	echo '<td><a class="btn-primary btn-xs" href="updatePlayer.php?id='.$joueur["id"].'"> Modifier</a></td>';
-	echo '<td><a class="btn btn-danger btn-xs" href="deletePlayer.php?id='.$joueur["id"].'"> Supprimer</a></td>';
-	echo '</tr>';
-}
 
+	
+	// var_dump(getTeamById($joueur["equipe"]));
+	$team = getTeamById($joueur["equipe"]);
+	if($team == false){
+		$output.='<td>Equipe:Retraité  </td>';
+	}
+	else{
+		$output.='<td>Equipe: '.$team['nom'].'  </td>';
+	}
+
+	$output.= '<td><a class="btn-primary btn-xs" href="updatePlayer.php?id='.$joueur["id"].'"> Modifier</a></td>';
+	$output.= '<td><a class="btn btn-danger btn-xs" href="deletePlayer.php?id='.$joueur["id"].'"> Supprimer</a></td>';
+	$output.= '</tr>';
+}
+	echo '<p>Nombre de résultats:'.$i.'</p>';
+	echo $output;
 ?>
+
 </table>
 <?php include 'includes/footer.php'; ?>

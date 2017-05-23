@@ -11,19 +11,18 @@ if(isset($_POST['input'])){
 
 	//-->2--requête<--
 	$query = $db->prepare(
-		'INSERT INTO joueur (nom, prenom, age, numeros_maillot, equipe) VALUES (:name, :firstname, :age, :numeros_maillot, :equipe)'
+		'INSERT INTO equipe (nom, entraineur, couleurs) VALUES (:nom, :entraineur, :couleurs)'
 		);
 	//-->3--Execution<--
 	$query->execute(array(
-		':name'=>$_POST['nom'],
-		':firstname'=>$_POST['prenom'],
-		':age'=>$_POST['age'],
-		':numeros_maillot'=>$_POST['numeros_maillot'],
-		':equipe'=>$_POST['equipe']
+		':nom'=>$_POST['nom'],
+		':entraineur'=>$_POST['entraineur'],
+		':couleurs'=>$_POST['couleurs']
 		));
 
+var_dump($_POST);
 	//-->4)redirection
-	header('location:joueurs.php');
+	// header('location:joueurs.php');
 }
 else{
 	/*echo 'Le client n\'a pas validé';*/
@@ -31,9 +30,14 @@ else{
 }
 
 
+
+
+
+
+
 ?>
 
-<h1>Enregister un joueur</h1>
+<h1>Enregister une Equipe</h1>
 
 <div class="container">	
 	<form method="POST">
@@ -44,38 +48,18 @@ else{
 	  		</div>
 
 	  		<div class="col-md-4">
-	  			<label>Prénom</label>
-				<input type="text" name="prenom">
+	  			<label>Entraineur</label>
+				<input type="text" name="entraineur">
 	  		</div>
 
 	  		<div class="col-md-4">
-	  			<label>Age</label>
-				<input type="text" name="age">
+	  			<label>Couleur</label>
+				<input type="text" name="couleurs">
 	  		</div>
 
 	  	</div>
 
-	  	<div class="row">
-	  		<div class="col-md-6">
-	  			<label>Numeros de maillot</label>
-				<!-- <input type="text" name="numeros_maillot"> -->
-				<select name="numeros_maillot">
-					<?php
-						for($i=1; $i<1000; $i++){
-							echo '<option>'.$i.'</option>';
-						}
-					?>
-				</select>
-	  		</div>
-
-	  		<div class="col-md-6">
-	  			<label>Equipe</label>
-	  			<?php echo selectFormat(getTeams()); ?>
-	  			
-	  		</div>
-
-	  	</div>
-
+	  	
 	  	<div class="row">
 	  		<div col-md-12>
 	  		<input type="submit" name="input" value="Enregister">
@@ -86,5 +70,10 @@ else{
 	</form>
 
 </div>
+
+
+
+
+
 
 <?php include 'includes/footer.php'; ?>

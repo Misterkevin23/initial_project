@@ -32,3 +32,12 @@ td{
 	border: 20px;
 	padding: 7px;
 }
+
+p{
+	margin-left: 20px;
+
+}
+
+.row, .col-md-4, .col-md-12{
+	margin:23px 0px;
+}

@@ -1,8 +1,9 @@
 <?php
-include 'includes/connexion_db.php'; // fournit connnect();
-include 'includes/util.inc.php';
+include_once 'includes/connexion_db.php'; 
+include 'includes/util.inc.php'; // fournit connnect();
 include 'includes/header.php';
 include 'includes/menu.php';
+include 'includes/equipe.inc.php';
 
 //Récuperation de l'identifiant du joueur
 if(isset($_GET["id"])){
@@ -34,14 +35,16 @@ if(isset($_POST["input"])){
 		$db = connect();
 
 	}
-	$query=$db->prepare('UPDATE joueur SET prenom = :prenom, nom = :nom, age = :age, numeros_maillot = :numeros_maillot WHERE id = :id');
+	$query=$db->prepare('UPDATE joueur SET prenom = :prenom, nom = :nom, age = :age, numeros_maillot = :numeros_maillot, equipe = :equipe  WHERE id = :id');
 
 	$query-> execute(array(
 		':prenom'=>			$_POST["prenom"],
 		':nom'=>			$_POST["nom"],
 		':age'=>			$_POST["age"],
 		':numeros_maillot'=>$_POST["numeros_maillot"],
-		':id'=>				$_POST["id"]
+		':id'=>				$_POST["id"],
+		':equipe'=>			$_POST["equipe"]
+
 		));
 
 	//redirection vers la liste des joueurs
@@ -55,21 +58,21 @@ if(isset($_POST["input"])){
 <input 
 	type="text"
  	name="nom"
- 	value="<?php echo $joueur['nom']?>">
+ 	value="<?php echo $joueur['nom'];?>">
 
-	<label>Prénom</label>
+<label>Prénom</label>
 	<input 
 	type="text" 
 	name="prenom"
 	value="<?php echo $joueur['prenom']?>">
 
-	<label>Age</label>
+<label>Age</label>
 	<input
 	 type="text"
 	 name="age"
 	 value="<?php echo $joueur['age']?>" >
 
-	<label>Numeros de maillot</label>
+<label>Numeros de maillot</label>
 	<!-- <input type="text" name="numeros_maillot"> -->
 	<select 
 	name="numeros_maillot">
@@ -84,6 +87,11 @@ if(isset($_POST["input"])){
 			}
 		?>
 	</select> 
+
+<label>Equipe</label>
+	 <?php echo selectFormatWithSelectedOpt(getTeams(), $joueur['equipe']); ?>
+
+
 	<br><input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
 	
 	<input type="submit" name="input" value="Mettre à jour">
