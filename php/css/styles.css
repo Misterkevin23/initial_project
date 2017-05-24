@@ -28,6 +28,10 @@ table{
 	border-left-width:7px;
 }
 
+table img{
+	height:40px;
+}
+
 td{
 	border: 20px;
 	padding: 7px;

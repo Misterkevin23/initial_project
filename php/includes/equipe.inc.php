@@ -26,6 +26,23 @@ function selectFormat($teams){
 	return $output;
 }
 
+function tableFormat($teams){
+	$output='<table class="table table-striped equipe">';
+	$output .='<tr><th>Nom</th><th>Entraineur</th><th>Couleur</th><th>Logo</th></tr>';
+	foreach($teams as $team){
+	
+	$output.= '<tr>';
+	$output.='<td>' . $team["nom"] . ' ' .' </td>';
+	$output.='<td>' . $team["entraineur"]. ' ' .'</td>';
+	$output.='<td>' . $team["couleurs"]. ' ' .'</td>';
+	$output.='<td><img src="'.$team["logo"].'"></td>';
+	$output.= '</tr>';
+	}
+	$output.='</table>';
+
+	return $output;
+}
+
 function selectFormatWithSelectedOpt($teams, $opt ){
 	$output = '<select name="equipe">';
 	foreach($teams as $team){
@@ -42,5 +59,19 @@ function selectFormatWithSelectedOpt($teams, $opt ){
 	return $output;
 }
 
+function createTeam($team){
+	$db=connect();
+	$query=$db->prepare('
+		INSERT INTO equipe (nom, entraineur, couleurs, logo) 
+		VALUES (:nom, :entraineur, :couleurs, :logo)
+	');
+	$result = $query->execute(array(
+		':nom'			=>$team['nom'],
+		':entraineur'	=>$team['entraineur'],
+		':couleurs'		=>$team['couleurs'],
+		':logo'			=>$team['logo']
+		));
+	return $result;
+}
 
 ?>

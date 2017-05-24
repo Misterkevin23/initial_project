@@ -40,7 +40,7 @@ $query->execute();
 		<input type="submit" value="Valider">
 	</form>	
 </div>
-<table>
+<table class="equipe">
 
 <?php
 $output='';
@@ -62,11 +62,13 @@ while($joueur = $query->fetch()){
 	
 	// var_dump(getTeamById($joueur["equipe"]));
 	$team = getTeamById($joueur["equipe"]);
+
 	if($team == false){
-		$output.='<td>Equipe:Retraité  </td>';
+		$output.='<td>Equipe:Retraité</td>';
 	}
 	else{
-		$output.='<td>Equipe: '.$team['nom'].'  </td>';
+		// $output.='<td>Equipe:'.$team['nom'].'<td>';
+		$output.='<td><img src="'.$team['logo'].'"></td>';
 	}
 
 	$output.= '<td><a class="btn-primary btn-xs" href="updatePlayer.php?id='.$joueur["id"].'"> Modifier</a></td>';

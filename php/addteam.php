@@ -5,42 +5,43 @@ include 'includes/menu.php';
 include 'includes/equipe.inc.php';
 
 if(isset($_POST['input'])){
-	/*echo 'Le client a validé le formulaire';*/
-	//-->1--connexion<---
-	$db = new PDO('mysql:host=localhost;dbname=formation-poec', 'root', '');
+		
+//upload du fichier
+	if($_FILES["logo"]["size"] <500000) {
 
-	//-->2--requête<--
-	$query = $db->prepare(
-		'INSERT INTO equipe (nom, entraineur, couleurs) VALUES (:nom, :entraineur, :couleurs)'
-		);
-	//-->3--Execution<--
-	$query->execute(array(
-		':nom'=>$_POST['nom'],
-		':entraineur'=>$_POST['entraineur'],
-		':couleurs'=>$_POST['couleurs']
-		));
+		$source=$_FILES["logo"]["tmp_name"];
 
-var_dump($_POST);
-	//-->4)redirection
-	// header('location:joueurs.php');
-}
-else{
-	/*echo 'Le client n\'a pas validé';*/
+		$extension = substr($_FILES["logo"]["name"], -4);
+
+		$destination='img/logo/'. $_POST["nom"].$extension;
+		
+		// déplacer le fichier de la zone temporaire vers son
+		// emplacement "définitif" sur le serveur
+		move_uploaded_file($source, $destination);
+		
+		$teams=$_POST; //copie $_POST dans $team;
+
+		//on ajoute la clé 'logo' au tableau associatif $team
+		$teams['logo'] = $destination;
 	
+	if (createTeam($teams)){
+		// redirection
+		header('location:equipes.php');
+	}
+	else {
+		echo '<p class="text-warning">L\' engregistrement a échoué</p>';
+	}
+	} else{
+	echoP("Fichier trop lourd");	
+	}
 }
-
-
-
-
-
-
-
 ?>
 
 <h1>Enregister une Equipe</h1>
 
 <div class="container">	
-	<form method="POST">
+ <!--enctype="multipart/form-data" pour envoyer des fichiers -->
+	<form method="POST" enctype="multipart/form-data">
 	  	<div class="row">
 	  		<div class="col-md-4">
 		  		<label>Nom</label>
@@ -57,6 +58,11 @@ else{
 				<input type="text" name="couleurs">
 	  		</div>
 
+	  		<div class="col-md-6">
+	  			<label>Logo</label>
+				<input type="file" name="logo">
+	  		</div>
+
 	  	</div>
 
 	  	
@@ -70,10 +76,5 @@ else{
 	</form>
 
 </div>
-
-
-
-
-
 
 <?php include 'includes/footer.php'; ?>
