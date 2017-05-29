@@ -13,7 +13,7 @@
 
 <!-- Formulaire de connexion -->
 <?php if($connected): ?>
-<form method="POST" action="post.php">
+<form method="POST" action="login.php">
 <label style="color:green">Email:</label>
 <input type="email" name="email" placeholder="Taper votre email">
 

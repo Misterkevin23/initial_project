@@ -19,6 +19,7 @@ form{
 	border-radius:20px;
 	padding: 7px;
 	text-align: center;
+	box-shadow: 7px 3px blue;
 }
 
 table{
@@ -45,3 +46,4 @@ p{
 .row, .col-md-4, .col-md-12{
 	margin:23px 0px;
 }
+

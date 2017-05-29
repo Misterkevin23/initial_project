@@ -80,7 +80,7 @@ echo '<table class="table table-striped">';
 	
 	foreach($joueur['photo2'] as $photo) {
 	echo '<tr>';
-	echo '<td><img style="width:300px; border:7px blue dotted" src="'.$photo['path'].'"></td>';
+	echo '<td><img style="width:300px; height:300px; border:7px blue dotted" src="'.$photo['path'].'"></td>';
 	echo '<td><span style="font-size:2em">'.$photo['caption'].'</span></td>';
 	echo '</tr>';
 }

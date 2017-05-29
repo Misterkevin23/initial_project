@@ -1,8 +1,45 @@
 <?php
 include 'includes/util.inc.php';
+include 'includes/equipe.inc.php';
+include_once 'includes/access.inc.php';
 include 'includes/header.php';
 include 'includes/menu.php';
-include 'includes/equipe.inc.php';
+
+//version 1
+/*if(isset($_SESSION['user']))
+{
+	if($_SESSION['user']['role']=='admin' || 'client')
+	{
+	include 'includes/Forms/addPlayer.inc.php';	
+	}
+	else
+	{
+		echOgmP('Droits insuffisants');
+	}
+}
+else
+{
+	echOgmP('Il faut d\'abord ce logger!');
+}	*/
+
+//Version 2
+if (isLogged())
+{
+	if (getRole()=='admin' || 'client')
+	{
+		include 'includes/Forms/addPlayer.inc.php';
+	}
+	else
+	{
+		echOgmP('Droits insuffisants');
+	}
+}
+else
+{
+	echOgmP('Il faut d\'abord ce logger!');
+}
+
+
 
 if(isset($_POST['input'])){
 	/*echo 'Le client a validé le formulaire';*/
@@ -33,58 +70,6 @@ else{
 
 ?>
 
-<h1>Enregister un joueur</h1>
 
-<div class="container">	
-	<form method="POST">
-	  	<div class="row">
-	  		<div class="col-md-4">
-		  		<label>Nom</label>
-				<input type="text" name="nom">
-	  		</div>
-
-	  		<div class="col-md-4">
-	  			<label>Prénom</label>
-				<input type="text" name="prenom">
-	  		</div>
-
-	  		<div class="col-md-4">
-	  			<label>Age</label>
-				<input type="text" name="age">
-	  		</div>
-
-	  	</div>
-
-	  	<div class="row">
-	  		<div class="col-md-6">
-	  			<label>Numeros de maillot</label>
-				<!-- <input type="text" name="numeros_maillot"> -->
-				<select name="numeros_maillot">
-					<?php
-						for($i=1; $i<1000; $i++){
-							echo '<option>'.$i.'</option>';
-						}
-					?>
-				</select>
-	  		</div>
-
-	  		<div class="col-md-6">
-	  			<label>Equipe</label>
-	  			<?php echo selectFormat(getTeams()); ?>
-	  			
-	  		</div>
-
-	  	</div>
-
-	  	<div class="row">
-	  		<div col-md-12>
-	  		<input type="submit" name="input" value="Enregister">
-	  		</div>
-
-	  	</div>
-
-	</form>
-
-</div>
 
 <?php include 'includes/footer.php'; ?>

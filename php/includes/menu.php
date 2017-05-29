@@ -1,6 +1,7 @@
 <?php
+include_once 'access.inc.php';
 	$menus=[
-			['href'=>'_index.php', 'label' => 'Accueil'],
+			['href'=>'index.php', 'label' => 'Accueil'],
 			['href'=>'variables.php', 'label' => 'Variables'],
 			['href'=>'boucle.php', 'label' => 'Boucle'],
 			['href'=>'fonction.php', 'label' => 'Fonction'],
@@ -20,7 +21,12 @@
 					<?php echo $menu['label']; ?> 
 				</a>
 			</li>
-
 		<?php endforeach ?>	
+			<?php
+			if (isLogged())
+			{
+				echo '<li><a href="logout.php">Déconnexion</a></li>';
+			}
+			?>
 	</ul>
 </nav>	

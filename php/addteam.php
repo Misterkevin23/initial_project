@@ -4,16 +4,24 @@ include 'includes/header.php';
 include 'includes/menu.php';
 include 'includes/equipe.inc.php';
 
-if(isset($_POST['input'])){
-		
+
+var_dump($_SESSION);
+
+if(isset($_POST['input']) && isset($_FILES))
+{
+	$extension = substr($_FILES["logo"]["name"], -4);
+	$conditions= 
+		$_FILES["logo"]["size"] <500000 &&
+		isFormatAllowed($extension);
+
 //upload du fichier
-	if($_FILES["logo"]["size"] <500000) {
+	if($conditions)
+	{
 
 		$source=$_FILES["logo"]["tmp_name"];
 
-		$extension = substr($_FILES["logo"]["name"], -4);
-
-		$destination='img/logo/'. $_POST["nom"].$extension;
+	
+		$destination='img/logo/'. rightFormat($_POST["nom"]).$extension;
 		
 		// déplacer le fichier de la zone temporaire vers son
 		// emplacement "définitif" sur le serveur
@@ -24,57 +32,42 @@ if(isset($_POST['input'])){
 		//on ajoute la clé 'logo' au tableau associatif $team
 		$teams['logo'] = $destination;
 	
-	if (createTeam($teams)){
-		// redirection
-		header('location:equipes.php');
+		if (createTeam($teams))
+		{
+			// redirection
+			header('location:equipes.php');
+		}
+		else
+		{
+			echo '<p class="text-warning">L\' engregistrement a échoué</p>';
+		}
 	}
-	else {
-		echo '<p class="text-warning">L\' engregistrement a échoué</p>';
-	}
-	} else{
-	echoP("Fichier trop lourd");	
+	else
+	{
+	echoP("Fichier non autorisé ou trop lourd");	
 	}
 }
 ?>
 
-<h1>Enregister une Equipe</h1>
+<?php
+// if(isset($_SESSION['logged'])){
+if(isset($_SESSION['user']))
+{
+	if($_SESSION['user']['role']=='admin')
+	{
+	include 'includes/Forms/addTeam.inc.php';	
+	}
+	else
+	{
+		echOgmP('Droits insuffisants');
+	}
+	
+}
+else
+{
+	echOgmP('vous devez être connecté pour accéder à cette resource');
+}
 
-<div class="container">	
- <!--enctype="multipart/form-data" pour envoyer des fichiers -->
-	<form method="POST" enctype="multipart/form-data">
-	  	<div class="row">
-	  		<div class="col-md-4">
-		  		<label>Nom</label>
-				<input type="text" name="nom">
-	  		</div>
-
-	  		<div class="col-md-4">
-	  			<label>Entraineur</label>
-				<input type="text" name="entraineur">
-	  		</div>
-
-	  		<div class="col-md-4">
-	  			<label>Couleur</label>
-				<input type="text" name="couleurs">
-	  		</div>
-
-	  		<div class="col-md-6">
-	  			<label>Logo</label>
-				<input type="file" name="logo">
-	  		</div>
-
-	  	</div>
-
-	  	
-	  	<div class="row">
-	  		<div col-md-12>
-	  		<input type="submit" name="input" value="Enregister">
-	  		</div>
-
-	  	</div>
-
-	</form>
-
-</div>
+?>
 
 <?php include 'includes/footer.php'; ?>
