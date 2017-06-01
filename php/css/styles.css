@@ -47,7 +47,16 @@ p{
 	margin:23px 0px;
 }
 
-#ageHeader:hover{
+#ageHeader:hover, #nomHeader:hover {
 cursor:pointer;
+}
+
+.oldest{
+	color:green;
+	background:red;
+}
+
+#formPlayer{
+	display: none;
 }
 

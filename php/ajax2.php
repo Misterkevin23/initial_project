@@ -23,11 +23,20 @@
 		FROM joueur
 		LEFT JOIN equipe
 		ON joueur.equipe = equipe.id 
-		ORDER BY joueur.age ASC, joueur.nom ASC    
+		ORDER BY joueur.nom ASC, joueur.age ASC    
 		');
 	$query->execute();
 
 	$results = $query-> fetchAll();
+
+	//Modification des données (majuscule, minuscule, etc) avant 
+	//envoi au client
+
+	for ( $i=0; $i < sizeof($results); $i++)
+	{
+		$results[$i]['nom'] = strtoupper($results[$i]['nom']);
+		$results[$i]['prenom'] = ucfirst($results[$i]['prenom']);
+	}
 
 	echo json_encode($results);
 
