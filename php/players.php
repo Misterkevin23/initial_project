@@ -30,6 +30,7 @@ include 'includes/equipe.inc.php';
 	<?php echo selectFormat(getTeams()); ?>
 
 	<button class="btn btn-primary btn-xs">Enregistrer</button>
+	<span id="message"></span>
 </div><br>
 
 <!-- <button id="btn">Test</button>

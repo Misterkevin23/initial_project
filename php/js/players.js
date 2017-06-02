@@ -1,8 +1,15 @@
+//***Variable globales***
+
 //source de données globale (toutes les fonction y ont accès)
 var players= null;
 var ageAsc=false; //booléen permetant de savoir si les joueurs sont triés par age ascendant
 var nomAsc= true;
 var filterAge = null;
+
+//**************************************************
+
+
+//*** Fonction ****
 
 function getPlayers(){
 	var url = 'http://localhost/projet/aston/php/ajax2.php';
@@ -104,7 +111,7 @@ function getFormValues(form){
 	var nom 		= inputs.eq(0).val();
 	var prenom 		= inputs.eq(1).val();
 	var age 		= inputs.eq(2).val();
-//renvoi un tableau de deux balises select
+	//renvoi un tableau de deux balises select
 	var selects		=form.children('select');
 	
 	var maillot 	=selects.eq(0).val();
@@ -126,7 +133,28 @@ function getFormValues(form){
 	return values;
 }
 
-getPlayers(); //appel de la fonction au chargement du script
+function checkValues(player){
+	//player est un objet
+	var conditions = 
+		player.nom.length > 1 &&
+		player.prenom.length > 1 &&
+		player.age.length > 1;
+
+	return conditions;		
+}
+
+function clearMessage(timer){
+	var message= $('#message');
+	setTimeout(function(){
+			message
+			.text('')	//efface le texte situé dans l'émément image
+			.removeClass();
+	}, timer);
+}
+
+//******************************************************************
+
+//*** Ecouteur d'événement (eventListeners) ****
 
 $('#selectAge').on('change', function(){
 	//.val() recupère la valeur de l'élément du formulaire(select)
@@ -198,9 +226,6 @@ $('#displayFormPlayer').on('click', function(){
 	}
 })
 
-$('#formPlayer button').on('click',function(){
-	console.log('ok');
-});
 
 $('#formPlayer button').on('click', function(){
 	var form = $('#formPlayer');
@@ -208,12 +233,58 @@ $('#formPlayer button').on('click', function(){
 	//création d'un objet player à partir des valeurs récupérées dans le formulaire 
 	var player = getFormValues(form);
 
-	//requête ajax en post
-	var url = 'http://localhost/projet/aston/php/ajaxAddPlayer.php';
-	$.post(url, player, function(data){
-		console.log(data);
-	});
-})
+	var check = checkValues(player);
+
+	console.log(check);
+
+	if (check)
+	{
+		//si conditions remplies => requête ajax en post
+		var url = 'http://localhost/projet/aston/php/ajaxAddPlayer.php';
+		$.post(url, player, function(data){
+		//si php a renvoyer 1 (requête sql éxécuté avec succes)	
+			if (data==1){
+				getPlayers(); // recharge la liste des joueurs
+				$('#message')
+					.text('Enregistrement validé')
+					.removeClass()
+					.addClass('bg-success')
+					.addClass('text-sucess')
+					.css('padding','10px')
+					.css('margin','10px');
+
+			}
+			else
+			{
+				$('#message').text('Enregistrement à échoué')
+				.removeClass()
+				.addClass('bg-danger')
+				.addClass('text-danger')
+				.css('padding','10px')
+				.css('margin','10px');
+
+			}
+		});
+	}
+	else
+	{
+		// afficher message d'erreur si els lconditions de validation non remplies
+		$('#message').text('Formulaire non valide')
+		.removeClass()
+		.addClass('bg-danger')
+		.addClass('text-danger')
+		.css('padding','10px')
+		.css('margin','10px');
+	}
+	clearMessage(5000);
+});
+
+//***********************************************************************
+
+//*** Chargement de la liste des joueurs
+
+getPlayers(); //appel de la fonction au chargement du script
+
 
 //Lodash: exemples
 /*var notes = [7, 23, 42, 3];
