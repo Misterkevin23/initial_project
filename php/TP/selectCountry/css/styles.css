@@ -1,0 +1,25 @@
+h1{
+	text-align: center;
+	color:blue;
+	border-bottom: 3px black;
+	border-radius: 40px;
+}
+
+label, select{
+	margin:23px 7px;
+
+}
+
+th{
+	text-align: center;
+}
+
+td img{
+	width: 300px;
+	float:right;
+	margin-right:300px;
+}
+
+#info{
+	margin-top:42px;
+}

@@ -7,7 +7,7 @@ include 'include/pays.inc.php';
 
 <h1>  ATLAS demographique par pays </h1>
 
-<label>Selectionné votre pays</label>
+<label>Selectionné votre pays : </label>
 
 <?php echo selectFormat(getCountry()); ?>
 
