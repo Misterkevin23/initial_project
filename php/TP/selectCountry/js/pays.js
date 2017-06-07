@@ -38,23 +38,27 @@ function select(country){
 	$('select').change(function(){
 		
 		var nation= $('select').val();
+		// console.log(nation);
 
 		for(var i=0; i<country.length; i++){
+			console.log(country[i]);
 			if(country[i]== nation)
 			{
 				$('#'+nation).show();
+				
 			}
 			else
 			{
 				$('#'+country[i]).hide();
 				$('#info').show();
+				// console.log(country[i]);
 			}
 		}
 	})
 }
 
 function getPays(){
-	var url = 'http://localhost/initial_project/php/TP/selectCountry/ajaxPays.php';
+	var url = 'http://localhost/projet/aston/php/TP/selectCountry/ajaxPays.php';
 	$.get(url, function(data){
 	pays=JSON.parse(data);
 	console.log(pays);
