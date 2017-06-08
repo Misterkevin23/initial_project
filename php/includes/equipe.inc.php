@@ -18,6 +18,7 @@ function getTeamById($id){
 
 function selectFormat($teams){
 	$output = '<select name="equipe">';
+	$output .= '<option value="0">Sans équipe </option>';
 	foreach($teams as $team){
 		$output .='<option value="'.$team['id'].'">'.$team['nom'].'</option>';
 	}
@@ -45,6 +46,7 @@ function tableFormat($teams){
 
 function selectFormatWithSelectedOpt($teams, $opt ){
 	$output = '<select name="equipe">';
+	$output .= '<option value="0">Sans équipe </option>';
 	foreach($teams as $team){
 		if($team['id']== $opt){
 			$output .='<option selected value="'.$team['id'].'">'.$team['nom'].'</option>';

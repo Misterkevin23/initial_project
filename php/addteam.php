@@ -5,8 +5,6 @@ include 'includes/menu.php';
 include 'includes/equipe.inc.php';
 
 
-var_dump($_SESSION);
-
 if(isset($_POST['input']) && isset($_FILES))
 {
 	$extension = substr($_FILES["logo"]["name"], -4);

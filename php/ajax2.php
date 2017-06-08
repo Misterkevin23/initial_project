@@ -19,7 +19,15 @@
 	//ORDER BY permet d'ordonner les donnée en fonction d'un paramettre 
 	//ASC classement ascendant
 	//DESC classement dessendant
-	$query= $db ->prepare ('SELECT joueur.nom, joueur.prenom, joueur.age, joueur.equipe, joueur.numeros_maillot, equipe.nom AS equipe_nom
+	$query= $db ->prepare ('SELECT 
+		joueur.id, 
+		joueur.nom, 
+		joueur.prenom, 
+		joueur.age, 
+		joueur.equipe, 
+		joueur.numeros_maillot, 
+		equipe.logo AS equipe_logo, 
+		equipe.nom AS equipe_nom
 		FROM joueur
 		LEFT JOIN equipe
 		ON joueur.equipe = equipe.id 
@@ -36,6 +44,16 @@
 	{
 		$results[$i]['nom'] = strtoupper($results[$i]['nom']);
 		$results[$i]['prenom'] = ucfirst($results[$i]['prenom']);
+
+		// si le joueur n'est relié à aucune équipe, on modifie
+		//sa propriété "équipe_logo" en lui assignant le lien vers le logo
+		//de pole emploi
+
+		if($results[$i]['equipe'] == 0){
+			// $results[$i]['equipe_nom'] = "Sans équipe";
+			$results[$i]['equipe_logo'] = "img/logo/pole_emploi.jpg";
+		}
+
 	}
 
 	echo json_encode($results);
