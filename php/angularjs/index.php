@@ -13,6 +13,8 @@
 	</style>	
 </head>
 <body>
+	<?php include '../includes/menu.php'; ?>
+
 	<h1>Angulars JS Intro</h1>
 
 	<div ng-controller="mainCtrl">
