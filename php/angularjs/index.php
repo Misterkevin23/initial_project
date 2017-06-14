@@ -13,11 +13,31 @@
 	</style>	
 </head>
 <body>
-	<?php include '../includes/menu.php'; ?>
+	<?php 
+	include '../includes/equipe.inc.php';
+	include '../includes/menu.php'; 
+	?>
 
 	<h1>Angulars JS Intro</h1>
 
 	<div ng-controller="mainCtrl">
+
+<!-- formulaire d'ajout/mise à jour d'un joueur -->
+	<div class="well">
+		<input ng-model="team.nom" type="text" placeholder="Nom">
+		<input ng-model="team.prenom" type="text" placeholder="Prénom">
+		<input ng-model="team.age" type="text" placeholder="Age">
+		<label>Numeros</label>
+		<select ng-model="team.numeros_maillot">
+			<option ng-repeat="n in maillot_range">{{n}}</option>
+		</select>
+
+		<label>Equipe</label>
+		<?php echo selectFormat(getTeams()); ?>
+
+		<button ng-click="savePlayer()" class="btn btn-primary btn-xs">Enregistrer</button>
+		<span id="message"></span>
+	</div>
 
 <!--filtre-->
 	<div>
@@ -70,5 +90,6 @@
 	</div>
 	<script src="js/angular.min.js"></script>
 	<script src="js/app.js"></script>
+	<!-- <script src="js/app_v1.js"></script> -->
 </body>
 </html>

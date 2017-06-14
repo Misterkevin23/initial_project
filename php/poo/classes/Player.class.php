@@ -63,6 +63,13 @@ class Player
 		));
 	}
 
+	function delete()
+	{
+		$query = $this->db -> prepare('DELETE FROM joueur WHERE id= :id');
+		return $query-> execute(array(
+		':id'=>$this->id
+		));
+	}
 
 }
 

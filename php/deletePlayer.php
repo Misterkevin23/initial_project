@@ -17,6 +17,7 @@ if(isset($_GET["id"])){
 		':id'=>$id
 	));
 	if (isset($_GET['ajax']))
+		//requête reçue en http ajax
 	{
 		echo "le joueur d'id " . $id . " a été supprimé";
 	}

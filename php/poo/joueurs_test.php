@@ -27,16 +27,23 @@ else
 $player2= $pm->getById(4);
 $player2->numeros_maillot = 26;
 
-if($player2->update())
-{
-	echo 'la mise à jour a été effectué!';
-}
-else
-{
-	echo 'Juvvvvvvvvvvvvvvv';
-}
+// if($player2->update())
+// {
+// 	echo 'la mise à jour a été effectué!';
+// }
+// else
+// {
+// 	echo 'Juvvvvvvvvvvvvvvv';
+// }
 
-
+// if($pm->getById(13)->delete())
+// {
+// 	echo 'Joueur supprimé';
+// }
+// else
+// {
+// 	echo 'Raté';
+// }
 
 
  ?>

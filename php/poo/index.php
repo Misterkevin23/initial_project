@@ -48,12 +48,14 @@ $j4 = creeJoueur(); // création d'un joueur en style procédural
 $j5 = creeJoueur();
 
 //utilisation de la classe Client
-/*$client1 = new Client('Langlais', 'Sophie', '7777 4242 4444 2323 ');
-echo $client1->nom;
-echo $client1->prenom;
-echo $client1->nb_cb;*/
+$client1 = new Client('Langlais', 'Sophie', '7777 4242 4444 2323 ');
 
-// var_dump($client1->isCbValid());
+//on peut appeler isCbValid depuis l'extérieur de la classe 
+//car cette méthode  est public
+if ($client1->isCbValid())
+{
+	echo "le numero de CB du client 1 est valide";
+}
 
 //test
 /*$cb = '4923 2145 8899 6330';
@@ -113,5 +115,20 @@ var_dump($equipe1);
 	echo '<p>'.$j5['prenom'].'</p>';
 
 	identite($j5); // appel à la function identité  en style procédural
+
+	// visibilité des membres d'une classe en POO
+
+	$alban = new Client("CARROUE", "Alban", "1111222233334444");
+	echo '<br>' . $alban->getNbCb();
+
+	$alban->setNbCb("1234"); // la mise à jour non effectuée car
+	//la valeur passée en entrée ne correspond pas au critère de
+	//validation (longueur 16) imposée par la methode privée isCbok() uitilisée
+	//en interne par le setteur stNBcB()
+	echo '<br>' . $alban->getNbCb();
+
+	$alban->setNbCb("1234567891234567"); // ici, la modification est autorisé
+	//par la méthode privée isCbOk();
+	echo '<br>' . $alban->getNbCb();
 
 ?>
