@@ -16,9 +16,10 @@ $('select').on('change', function() {
         if (index_pays != -1) {
             // pays déjà présent dans le tableau
             displayCountryData(pays_infos[index_pays]);
-        } else {
+        } else { // == -1
+
             // pays non présent => requête ajax
-            var url = 'http://localhost/projet/php_cours_git_christophe/TP/selectCountry/pays.php?id='+option;
+            var url = 'http://localhost/projet/php/TP/selectCountry/pays.php?id='+option;
             $.get(url, function(data) {
                 // affichage des données dans la page
                 var pays = JSON.parse(data); // conversion de la chaîne JSON
@@ -27,7 +28,6 @@ $('select').on('change', function() {
 
                 // mise en cache des données
                 pays_infos.push(pays);
-                console.log(pays_infos);
             });
         }
 

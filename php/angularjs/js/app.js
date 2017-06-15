@@ -6,6 +6,11 @@ var app = angular.module('introApp', []);
 app.controller('mainCtrl', function($scope, $http){
 	var url_server="http://localhost/projet/aston/php/poo/ajax.php";
 	
+	// $scope.updateMode est un indicateur permettant de savoir
+    // si le formulaire doit être géré en mode insertion ou bien
+    // en mode mise à jour
+    $scope.updateMode = false; // mode insertion par défaut
+    $scope.visibleForm=true;
 	$scope.nb_click=0;
 	$scope.orderKey = "age"; //critère de tri initial
 	$scope.reverse = false; // par defaut, tri croissant (pas d'inversion)
@@ -53,6 +58,16 @@ app.controller('mainCtrl', function($scope, $http){
 			$scope.maillot_range.push(i);
 		}
 	}
+
+	function initPlayer() {
+        $scope.player = {
+            nom: null,
+            prenom: null,
+            age: null,
+            numeros_maillot: "1",
+            equipe: "0"
+        };
+    }
 	
 
 	$scope.teams= equipes; // nous exposons les equipes:
@@ -66,11 +81,18 @@ app.controller('mainCtrl', function($scope, $http){
 	$scope.savePlayer = function(){
 		//requête ajax pour ajouter un joueur
 		var url=url_server;
-		$http.post(url, {team:$scope.team}).then(function(res){
+		$http.post(url, {player:$scope.player}).then(function(res){
 			//rechargement des joueurs
 			getPlayers();
+			// efface formulaire et repasse en mode insertion
+            $scope.clearForm();
 		});
 	};
+
+	$scope.editPlayer = function() {
+        $scope.player = this.g;
+        $scope.updateMode = true;
+    };
 
 	$scope.deletePlayer = function() {
 		//this retourne le "contexte" du bouton cliqué
@@ -78,16 +100,20 @@ app.controller('mainCtrl', function($scope, $http){
 		//que le bonton cliqué
 		//this.g (g est généré par le ng-repeat) retourne
 		//les données du joueur que l'on veut supprimer
-		var playerId = this.g.id;
+		var player_id = this.g.id;
 
 		//requete ajax pour supprimer le joueur identifié
-		var url=url_server + "?action=delete&id=" + playerId ;
+		var url=url_server + "?action=delete&id=" + player_id ;
 		$http.get(url).then(function(res){
 			//rechargement des joueurs
 			getPlayers();
 		});
 	};
 
+	$scope.clearForm = function() {
+        initPlayer();
+        $scope.updateMode = false;
+    }
 
 
 	//chargement des joueurs
@@ -95,6 +121,11 @@ app.controller('mainCtrl', function($scope, $http){
 
 	//construction de la liste des numéros de maillot
 	buildNumberList();
+
+	// initialisation du formulaire d'ajout de joueur
+    initPlayer();
+
+    //$scope.player = {nom: 'PIRES', prenom: 'Roberto'};
 
 
 });
