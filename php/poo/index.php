@@ -2,6 +2,7 @@
 
 include 'classes/Client.class.php';
 include 'classes/Equipe.class.php';
+include 'classes/Footballer.class.php';
 
 //orienté objet
 class Joueur {
@@ -32,9 +33,12 @@ for ($i=0; $i<11; $i++){
 function creeJoueur(){
 	//modelisation des données par tableau associatif
 	$joueur = [
-	'nom'=>'Zidane',
-	'prenom' => 'Enzo',
-	'age'=> null
+	'nom'				=>'Verratti',
+	'prenom' 			=> 'Marco',
+	'age'				=> 39,
+	'numeros_maillot'	=>6,
+	'equipe'			=>3
+
 	];
 	//la function creeJoueur renvoi un tableau associatif, PAS UN OBJET
 	return $joueur; 
@@ -81,16 +85,16 @@ $equipe1 = new Equipe ($psg);
 $equipe2 = new Equipe ($juve);
 
 // $equipe1 = new Equipe ('PSG', 1904 , 'Unai Emery', 'rouge,bleu');
-echo $equipe1->equipe();
+/*echo $equipe1->equipe();*/
 // $equipe2 = new Equipe ('Olympique de Marseille', 1932, 'Rudi Garcia', 'blanc,bleu');
-echo $equipe2->equipe();
+/*echo $equipe2->equipe();*/
 
 //var_dump ($psg); // => array
 //var_dump($equipe1); //=> object
 
-$equipe1->joueContre('Benfica', 'Paris', '14/02/2005');
+/*$equipe1->joueContre('Benfica', 'Paris', '14/02/2005');
 $equipe1->joueContre('Porto', 'Paris', '16/02/2005');
-$equipe1->joueContre('Madrid', 'Cardiff', '18/02/2005');
+$equipe1->joueContre('Madrid', 'Cardiff', '18/02/2005');*/
 
 var_dump($equipe1);
 
@@ -131,4 +135,11 @@ var_dump($equipe1);
 	//par la méthode privée isCbOk();
 	echo '<br>' . $alban->getNbCb();
 
+	//test du mécanisme d'héritage en POO
+	$data=creeJoueur();
+	$f=new Footballer($data);
+
+	$f->setSalaire(1200);
+
+	echo '<p>' . $f->nom . ' gagne ' . $f->getSalaire() . ' euro par minute <p>';
 ?>
