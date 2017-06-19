@@ -1,0 +1,92 @@
+****************************************************************************************************
+
+commande invite commande
+//cls : permet de cleaner l'invite commande
+
+//activer le serveur php
+
+		cd chemin du projet 
+		bin\console server: run
+
+**************************************************************************************************
+
+//instalation symphony
+	1-initialisation du serveur php
+		copier le chemin ou ce trouve php.exe (C:\wamp64\bin\php\php5.6.25)
+		trouver "modifier variable d'environnement ( en tapant var dans la bar de recherche windows)
+		cherche "path"
+		copier le chemin "C:\wamp64\bin\php\php5.6.25" apres le ; (si autre path existant)
+	2 tester si chemin ok
+		dans l'invite commande 
+		taper "php" si ca clignote, c'est ok!
+		CTRL + C permet d'arreter le programme
+
+	3 telechargement de l'utilitaire symphony
+		https://symfony.com/download
+	
+	4 instalation du de l'utilitaire
+		https://symfony.com/doc/current/setup.html
+		copier la commande "php -r "readfile('https://symfony.com/installer');" > symfony"
+	
+	5 recuperation du fichier symphony
+		aller dans C://utilisateurs/christine/
+		copier le fichier symfony
+		le coller dans le dossier projet/synphony de WAMP (dossier synphony à crée)
+
+	6 recuperation du certificat
+		rechercher dans google : cacert.pem symfony
+		https://openclassrooms.com/forum/sujet/symfony-3-erreur-installation
+		 le lien https://curl.haxx.se/ca/cacert.pem
+		couper et coller dans wamp64/bin/php/php5.6.25 le fichier cacert.pem.
+		ouvrir le fichier php.ini avec sublimText (ou block note).
+		chercher curl.cainfo dans ce dossier puis le modifier:
+				//retirer le ; (commentaire)
+			curl.cainfo = "C:\wamp64\bin\php\php5.6.25\cacert.pem"
+
+************************************************************************************************************************
+//Création d'un projet symfony
+
+	dans l'invite commande
+	php symfony new test (nom du projet à crée)
+
+*****************************************************************************************************************************
+
+//activer le serveur php
+
+		cd chemin du projet 
+		bin\console server: run
+
+*******************************************************************************************************************************
+
+// crée une class en symfony
+	1 crée une class symfony
+		php bin\console doctrine:generate:entity
+	2 repondre au question
+		nom du bundle:nom class
+		format de la classe par default [annotation]
+		type:
+		lenght:
+		Is nullable:
+		Is unique:
+
+	3 mise a jour de la base de donnée
+		php bin\console doctrine:schema:update --force
+		pour afficher la requête SQL Utilisé par Symfony  -->  remplace --force par --dump-sql
+
+
+****************************************************************************************************************************************
+
+// crée un controleur pour une class
+	php bin\console generate:doctrine:crud
+
+	1 indiquer la class que l'on veut controller
+		The Entity shortcut name: AppBundle:Team
+	2 indiquer si on veut toute les action crud d'écriture ( delete, add, update)
+		 generate the "write" actions [no]? yes
+	3 choisir le format
+		Configuration format (yml, xml, php, or annotation) [annotation]:
+	4 choisir le prefixe de la route
+		Routes prefix [/team]: /admin/team
+
+			-->
+		
