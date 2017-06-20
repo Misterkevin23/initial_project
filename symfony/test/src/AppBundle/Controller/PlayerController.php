@@ -27,11 +27,36 @@ class PlayerController extends Controller
         $joueurs = [$joueur1, $joueur2, $joueur3];
         //chargement des joueurs depuis la base de données
         //Récuperation du repository
-        $repository = $this ->getDoctrine()
+        /*$repository = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('AppBundle:Player');
 
-        $players = $repository -> findAll();
+        $players = $repository -> findAll();*/
+        $em = $this->getDoctrine()->getManager();
+        //REQUETE MYsql pour tous récupérer
+        /*$query = $em->createQuery('
+            SELECT p
+            FROM AppBundle:Player p
+            ');*/
+
+        //Requete SQL avec filtre    
+        $query = $em->createQuery('
+            SELECT p
+            FROM AppBundle:Player p
+            WHERE p.age < :age
+            ')->setParameter('age', 100);
+        
+        //Reqûete personnalisée avec jointure
+        // à compléter    
+        /*$query = $em->createQuery('
+            SELECT p, t
+            FROM AppBundle:Player p
+            LEFT JOIN AppBundle:Team t
+            WHERE p.equipe = t.id
+            
+            ');*/    
+
+        $players=$query->getResult();
 
         return $this->render('player/index.html.twig', array( //la methode render fournie les donnée a la view
             'titre'     =>$titre,
@@ -82,7 +107,8 @@ class PlayerController extends Controller
             $player->setNom($request->get('nom'));
             $player->setPrenom($request->get('prenom'));
             $player->setAge($request->get('age'));
-            $player->setNumeroMaillot($request->get('numero_maillot')); 
+            $player->setNumeroMaillot($request->get('numero_maillot'));
+            $player->setEquipe($request->get('equipe'));
             $em = $this->getDoctrine()-> getManager();
             $em->persist($player);
             $em->flush();
@@ -91,7 +117,14 @@ class PlayerController extends Controller
         }
         else
         {
-            return $this->render('/player/forms/add.html.twig');
+            //recupérer la liste des équipes
+            $em = $this->getDoctrine()->getManager();
+            $repo = $em->getRepository('AppBundle:Team');
+            $teams = $repo->findAll();
+
+            return $this->render('/player/forms/add.html.twig', array(
+                    'teams' => $teams
+                ));
         }    
         
     }
@@ -107,26 +140,40 @@ class PlayerController extends Controller
         //->getDoctrine()   Récupère l'ORM
         //->getManager()    Outil pour opérations en écriture
         //->getRepository() Outils pour opération en lecture
-        $repository = $this
-                        ->getDoctrine()
-                        ->getManager()
-                        ->getRepository ('AppBundle:Player');
+        $em = $this
+                ->getDoctrine()
+                ->getManager();
+
+        $playerRepo = $em->getRepository ('AppBundle:Player');
+        $teamRepo = $em->getRepository ('AppBundle:Team');
 
         // récupération de l'id
         // $id =$request->query->get('id'); //renvoi NULL
         // var_dump($id);         
 
         //trouver le joueur correspondant en base de données
-        $player = $repository->find($id); // find() == findById() cherche toujours dans
+        $player = $playerRepo->find($id); // find() == findById() cherche toujours dans
         //la colonne id de la table sql
         
+        $teamId = $player->getEquipe();
+        if($teamId!=NULL)
+        {
+        $teamName = $teamRepo->find($teamId)->getNom();
+        }
+        else
+        {
+          $teamName = 'Sans Equipe';  
+        } 
+
         //Afficher les informations via une vue/template (fichier twig)
         //render() associe la vue(fichier.twig) passé en premier argument
         //avec le tableau associatif passé en deuxième argument
         //Les données que le controller fournit à la vue seront
         //accessible (affichables, itérables, etc) par cette dernière               
+                                  
         return $this->render('player/detail.html.twig', array(
-            'player' => $player
+            'player'    =>$player,
+            'teamName'  =>$teamName
         ));
     }
 

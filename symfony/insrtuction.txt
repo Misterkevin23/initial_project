@@ -14,6 +14,7 @@ commande invite commande
 	1-initialisation du serveur php
 		copier le chemin ou ce trouve php.exe (C:\wamp64\bin\php\php5.6.25)
 		trouver "modifier variable d'environnement ( en tapant var dans la bar de recherche windows)
+		cliquer sur "Variables d'environnement"
 		cherche "path"
 		copier le chemin "C:\wamp64\bin\php\php5.6.25" apres le ; (si autre path existant)
 	2 tester si chemin ok
@@ -30,7 +31,7 @@ commande invite commande
 	
 	5 recuperation du fichier symphony
 		aller dans C://utilisateurs/christine/
-		copier le fichier symfony
+		couper le fichier symfony
 		le coller dans le dossier projet/synphony de WAMP (dossier synphony à crée)
 
 	6 recuperation du certificat
@@ -57,8 +58,12 @@ commande invite commande
 		bin\console server: run
 
 *******************************************************************************************************************************
+// céation de la base de données
+	php bin\console doctrine:database
 
-// crée une class en symfony
+
+*********************************************************************************************************************************
+// crée une entité (class spécial) en symfony
 	1 crée une class symfony
 		php bin\console doctrine:generate:entity
 	2 repondre au question
@@ -77,7 +82,7 @@ commande invite commande
 ****************************************************************************************************************************************
 
 // crée un controleur pour une class
-	php bin\console generate:doctrine:crud
+	php bin\console doctrine:generate:crud
 
 	1 indiquer la class que l'on veut controller
 		The Entity shortcut name: AppBundle:Team
@@ -88,5 +93,10 @@ commande invite commande
 	4 choisir le prefixe de la route
 		Routes prefix [/team]: /admin/team
 
-			-->
+
+*********************************************************************************************************************************************
+//mise a jour du schéma (strusture) de la base de donnée
+	php bin\console doctrine:schema:update -- force
+
+			
 		

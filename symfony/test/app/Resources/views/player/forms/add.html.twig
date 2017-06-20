@@ -17,6 +17,12 @@
         </select>
 
         <!-- à ajouter ensuite le menu de selection pour les équipes-->
+        <select name="equipe">
+            <option value="0">Sans équipe</option>
+            {% for team in teams %}
+                <option value="{{team.id}}">{{team.nom}}</option>
+            {% endfor %}
+        </select>
 
         <input class="btn btn-primary btn-xs" type="submit" name="Enregistrer">
 

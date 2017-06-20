@@ -49,6 +49,10 @@ class Team
      */
     private $couleurs;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Country", cascade="persist")
+     */
+    private $country;
 
     /**
      * Get id
@@ -154,6 +158,19 @@ class Team
     public function getCouleurs()
     {
         return $this->couleurs;
+    }
+
+     public function setCountry(Country $country)
+    {
+        $this->country = $country;
+
+        return $this;
+
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
     }
 }
 
