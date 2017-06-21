@@ -1,0 +1,74 @@
+<doctype HTML>
+<html>
+<head>
+	<title>Aston</title>
+</head>
+<body>
+
+<header>
+<img src="../image/nissan-skyline-gt-r-manji-garage-r34.jpg" height="75" width="100">
+	<nav style="background:green;">
+		<ul style="border:5px solid blue; width=100%">
+			<li>
+				<a href=""> Homepage </a>
+			</li>
+			<li>
+				<a href="">Liste des étudiants</a>
+			</li>
+			<li>
+				<a href="">Administration</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<form>
+		<div>
+			<label for="firstname">First Name</label>
+			<input type="text" id="firstname" name="gros_minet_1" value="Veuillez inscrir votre Prénom" placeholder="Kevin">	
+		</div>
+		<div>
+			<label for="name">Name</label>
+			<input type="text" id="name" name="gros_minet_2" value="Veuillez inscrire votre nom" placeholder="Pascal">	
+		</div>
+		<div>
+			<label for="email">Email</label>
+			<input type="email" id="email" name="Mail" value="Veuillez inscrire votre Email" placeholder="...@gmail.com">	
+		</div>
+		<div>
+			<label for="Civilite1" for="Civilite2">Civilité</label>
+			<input type="radio" id="Civilite1" name="Sex" value="M" checked=""><span>M.</span>	
+			<input type="radio" id="Civilite2" name="Sex" value="Mme"><span>Mme.</span>	
+		</div>
+		<div>
+			<label for="voiture1" for="voiture">Voiture</label>
+			<input type="checkbox" id="voiture1" name="voiture" value="lambo" checked><span>Lamborgini</span>	
+			<input type="checkbox" id="voiture2" name="voiture"" value="ferrari"><span>Ferrarie</span>	
+		</div>
+
+		<div>
+			<label for="manger"> A Table</label>
+			<select id="manger" size="1">
+				<option value="Mc_donald">Mc_donald</option>		
+				<option value="Quick" selected="">quick </option>	
+				<option value="kfc">KFC</option>	
+			</select>
+
+		</div>
+
+		<div>
+			<label for="stylo"> Stylo</label>
+			<select id="stylo" size="3" multiple="">
+				<option value="plume">plume</option>		
+				<option value="bille">bille</option>	
+				<option value="a_papier">à papier</option>	
+				<option value="stylo bleu">stylo bleu</option>	
+				<option value="stylo rouge">stylo bleu</option>			
+			</select>
+		</div>
+	<textarea> Taper votre texte </textarea>	
+	<input type="submit" name="Valider" value="Envoyer">	
+	</form>
+</main>
+</body>
+</html>				

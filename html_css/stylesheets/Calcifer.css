@@ -1,0 +1,174 @@
+header{
+		background: red;
+ 		overflow: auto;
+}
+
+h1{
+	font-size: 2em;
+	color:green;
+	border: 7px solid yellow;
+}
+
+h2{
+	color:blue;
+	font-family: Impact;
+	font-size: 2em
+	border: 7px solid yellow;
+	text-shadow: green;
+	text-align: center;
+}
+
+
+nav li{
+	display:inline-block;
+	text-align: center;
+	font-size: 2em;
+}
+
+a {
+	color:black;
+	text-decoration: none;
+}
+
+a:visited{
+	color:green;
+}
+
+a::after {
+	content:"||";
+}
+
+a::focus {
+	background: :blue;
+}
+
+form{
+	border: 3px solid black;
+	border-radius: 40px;
+}
+
+article{
+	margin:23px;
+}
+
+footer{
+	background:grey;
+	overflow: auto;
+}
+
+footer nav{
+	float:right;
+	margin-left: 20px;
+}
+
+footer nav li{
+	display:inline-block;
+	font-size: 1em;
+}
+
+table{
+	border: 7px black solid;
+	margin:23px;
+}
+
+th{
+	font-size: 2em;
+	font-family: Impact, serif;
+	border-right: 7px green dotted;
+}
+
+td{
+	color:red;
+	padding:7px;
+}
+
+.image{
+	width: 251px;
+	height:188px;
+	overflow: hidden;
+	background-image: url(../image/Restaurant_mariage.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	float:left;
+}
+
+.image1{
+	width: 284px;
+	height:188px;
+	overflow: hidden;
+	background-image: url(../image/Restaurant-coucher-de-soleil.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	float:right;
+}
+
+.image2{
+	width: 1350px;
+	height:61px;
+	overflow: hidden;
+	background-image: url(../image/restaurant2.jpg);
+	background-repeat: repeat;
+	background-size: contain;
+}
+.titre{
+	text-align:center;
+	font-size: 1em;
+}
+
+.forme{
+	font-size: 1em;
+	font-family: Impact, serif;
+	margin: 10px;
+	padding:7px;
+}
+
+.locomotion{
+	overflow: auto;
+}
+
+.voiture{
+	width: 250px;
+	height:250px;
+	overflow: hidden;
+	background-image: url(../image/nissan-skyline-gt-r-manji-garage-r34.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	float:left;
+	border: 3px black solid;
+	margin: 10px;
+}
+
+.moto{
+	width: 250px;
+	height:250px;
+	overflow: hidden;
+	background-image: url(../image/moto-sport-ktm-rc-125-2017-abs-cote.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	float:left;
+	border: 3px black solid;
+	margin: 10px;
+}
+
+.scooter{
+	width: 250px;
+	height:250px;
+	overflow: hidden;
+	background-image: url(../image/scooter-3-roues.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	float:left;
+	border: 3px black solid;
+	margin: 10px;
+}
+
+.texte{
+	color:black;
+	border:2px red solid;
+	border-radius: 40px;
+	padding: 14px;
+	text-shadow: red;
+	margin-left: 7px;
+}
+
+

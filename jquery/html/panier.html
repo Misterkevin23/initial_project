@@ -1,0 +1,54 @@
+<doctype HTML>
+<html>
+<head>
+	<title>test javascript</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href=../../stylesheets/css/bootstrap.min.css>
+	
+
+</head>
+
+<body>
+	<h1>Mon Panier</h1>
+	<ul class="list-group facturations">
+		<li>
+			<strong> Billet Match:  </strong> <hr>
+			Quantité: <input type="text" name="quant" class="quantite watch" value=1>
+			Prix: <input type="text" name="price" class="price watch" value=25>
+			<strong>Total</strong>
+			<input type="text" name="totalAPayer" class="totalAPayer" value=""> <br>	
+		</li>
+		<li class="list-group-item list-group-item-info">
+			<strong>Billet Train: </strong> <hr>
+			Quantité : <input type="text" name="quant" class="quantite watch" value=2>
+			Prix : <input type="text" name="price" class="price watch" value=50> 
+			<strong>Total</strong>
+			<input type="text" name="totalAPayer" class="totalAPayer" value=""> <br>	
+		</li>
+		<div id="totalPanier">
+			<strong>Net à payer: <input type="text" name="totalPanier" class="totalPanier"></strong>
+		</div>	
+	</ul>
+</body>
+
+<footer>
+<script type="text/javascript" src="../js/panier.js"> </script>	
+<script> 
+aPayerParArticle();
+TtotalAPayer();
+document.querySelectorAll(".facturations .watch").forEach(function(field){
+	field.onkeyup = function(){
+		aPayerParArticle();
+
+	}
+})
+document.querySelectorAll(".totalAPayer").forEach(function(field){
+	field.onkeyup = function(){
+		totalAPayer();
+
+	}
+})
+</script>
+</footer>
+
+</html>

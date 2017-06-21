@@ -1,0 +1,40 @@
+body{
+	margin:0;
+}
+
+header{
+	overflow:auto;
+}
+
+a{
+	color:#AAA;
+	text-decoration: none;
+}
+
+
+nav{
+	float:right;
+	margin-right: 15px;
+}
+nav li{
+	display:inline-block;
+	margin-right: 10px;
+}
+
+main{
+	/*clear:both;*/
+}
+.logo{
+	width: 200px;
+	height:50px;
+	overflow: hidden;
+	background-image: url(../image/nissan-skyline-gt-r-manji-garage-r34.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	float:left;
+}
+
+.col-moitie{
+	width: 50%;
+	float:left;
+}

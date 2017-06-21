@@ -1,0 +1,17 @@
+
+1 telecharger le fichier zip dropal 8 sur https://www.drupal.org
+
+2 dezippé le fichier dans le dossier www
+
+3 crée une bd "Drupal" dans mySQL
+
+4 Lors de l'instalation
+ 
+	pour activer OPcache
+		1 chercher OPcache dans le fichier php.init ( celui dans php/php5.6.25... ainsi que celui presend dans l'icon WAMP->php->php.init )
+		2 inscrire sous [opcache] :
+			zend_extension = "c:/wamp64/bin/php/php5.625/ext/php_opcache.dll"
+		3 decommenté la ligne opcache.enable=0 en dessous et activé la en mettant 1
+			opcache.enable=1
+
+	Mettre les parametres de connexion à la Db

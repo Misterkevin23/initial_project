@@ -1,0 +1,62 @@
+h1{
+	background:black;
+	color:white;
+	border-radius:30px;
+}
+
+label{
+	color:red;
+}
+
+input{
+	border:7px black solid;
+	background: green;
+}
+
+form{
+	border:3px brown solid;
+	margin: 23px;
+	border-radius:20px;
+	padding: 7px;
+	text-align: center;
+	box-shadow: 7px 3px blue;
+}
+
+table{
+	border: 3px blue solid;
+	margin-left: 23px;
+	border-collapse: collapse;
+	border-left-width:7px;
+}
+
+table img{
+	height:40px;
+}
+
+td{
+	border: 20px;
+	padding: 7px;
+}
+
+p{
+	margin-left: 20px;
+
+}
+
+.row, .col-md-4, .col-md-12{
+	margin:23px 0px;
+}
+
+#ageHeader:hover, #nomHeader:hover {
+cursor:pointer;
+}
+
+.oldest{
+	color:green;
+	background:red;
+}
+
+#formPlayer{
+	display: none;
+}
+
